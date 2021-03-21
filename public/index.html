@@ -31,7 +31,7 @@
     <script>
       $.ajax({
         type: 'GET',
-        url: 'http://localhost:3000/api/books?limit=3&ord=desc',
+        url: 'https://code-revolution-books.herokuapp.com/api/books?limit=3&ord=desc',
         success: (data, status, xhr) => {
           let template = ``;
           data.map((item) => {
