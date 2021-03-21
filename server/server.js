@@ -10,8 +10,17 @@ app.use(bodyParser.json());
 
 const mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
-
-mongoose.connect('mongodb+srv://Panthera:Bernice-77@cluster0.aougs.mongodb.net/book_db?retryWrites=true&w=majority');
+const options = {
+    useMongoClient: true,
+    autoIndex: false, // Don't build indexes
+    reconnectTries: Number.MAX_VALUE, // Never stop trying to reconnect
+    reconnectInterval: 500, // Reconnect every 500ms
+    poolSize: 10, // Maintain up to 10 socket connections
+    // If not connected, return errors immediately rather than waiting for reconnect
+    bufferMaxEntries: 0
+};
+let url = 'mongodb+srv://Panthera:Bernice-77@cluster0.aougs.mongodb.net/book_db?retryWrites=true&w=majority';
+mongoose.connect(url);
 // mongoose.connect('mongodb://localhost:27017/book_db');
 
 const { Book } = require('./models/books');
@@ -58,7 +67,7 @@ app.post('/api/add/books', (req, res) => {
         }
         res.status(200).send();
     });
-}); 
+});
 
 app.get('/api/books', (req, res) => {
     let limit = req.query.limit ? parseInt(req.query.limit) : 10;
