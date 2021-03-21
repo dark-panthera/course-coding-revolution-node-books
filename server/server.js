@@ -57,7 +57,7 @@ app.post('/api/add/books', (req, res) => {
         }
         res.status(200).send();
     });
-});
+}); 
 
 app.get('/api/books', (req, res) => {
     let limit = req.query.limit ? parseInt(req.query.limit) : 10;
