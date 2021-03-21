@@ -11,7 +11,8 @@ app.use(bodyParser.json());
 const mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
 
-mongoose.connect('mongodb://localhost:27017/book_db');
+mongoose.connect('mongodb+srv://Panthera:Bernice-77@cluster0.aougs.mongodb.net/book_db?retryWrites=true&w=majority');
+// mongoose.connect('mongodb://localhost:27017/book_db');
 
 const { Book } = require('./models/books');
 const { Store } = require('./models/stores');
